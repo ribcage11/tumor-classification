@@ -1,0 +1,4 @@
+data_path : data/
+label_path : data/train_labels.csv
+cache_path : .cache/
+sequences : T1wCE
