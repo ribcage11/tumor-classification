@@ -1,0 +1,5 @@
+*.ipynb
+*.idea
+data/
+.cache/
+config
