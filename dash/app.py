@@ -11,7 +11,7 @@ from dash import Dash, html, dcc, callback, Output, Input
 # Fix syspath for module import
 wdir = os.getcwd() # working directory
 sys.path.append(wdir)
-import src.static_df_ops as sdf_ops
+import src.make_df as make_df
 import src.DataFrameProcessor as DFP
 
 from src.file_traversal import read_config
@@ -25,8 +25,8 @@ port_num = config["port"]
 
 # dataframes
 labels = pd.read_csv(config["labels_path"])
-labels = sdf_ops.fill_labels_df(labels)
-scan_paths = sdf_ops.fill_scan_df(labels, config)
+labels = make_df.fill_labels_df(labels)
+scan_paths = make_df.fill_scan_df(labels, config)
 
 
 app = Dash()
@@ -37,7 +37,7 @@ app.layout = [
         # Class distribution
         dcc.Graph(figure=px.bar(labels.MGMT_value.value_counts(), color=[0, 1]).update_yaxes(title_text='Frequency')),
     ]),
-        # Make histogram of number of scans per patient
+    # Make histogram of number of scans per patient
     html.Div([
         html.Div(
             daq.BooleanSwitch(id='label-on', on=False, labelPosition='top', label='See labels'),
