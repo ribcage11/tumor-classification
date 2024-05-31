@@ -18,8 +18,10 @@ def fill_scan_df(labels_df, config):
 
     # Populate df with scan information: BraTS21ID, seq, and image basename
     # split path and only grab /BraTS21ID/<seq>/<image>.dcm
+    # only take digits of image id
     scan_info = scans_df["file_path"].str.rsplit("/", expand=True, n=3).iloc[:, 1:]
     scans_df[["BraTS21ID", "seq", "image_id"]] = scan_info
+    scans_df['image_id'] = scans_df['image_id'].str.extract(r'(\d+)')
 
     return scans_df
 
