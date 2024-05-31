@@ -7,9 +7,8 @@ import re
 # Add absolute path to config dictionary to avoid conflicts
 def path_check(key):
     wdir = os.getcwd() # working directory
-    pdir = wdir.rsplit("/", 1)[0] # parent directory
     if "/" in key:
-        return os.path.join(pdir, key) # return absolute path
+        return os.path.join(wdir, key) # return absolute path
     else:
         return key
 
