@@ -4,6 +4,16 @@ import os
 import re
 
 
+# Add absolute path to config dictionary to avoid conflicts
+def path_check(key):
+    wdir = os.getcwd() # working directory
+    pdir = wdir.rsplit("/", 1)[0] # parent directory
+    if "/" in key:
+        return os.path.join(pdir, key) # return absolute path
+    else:
+        return key
+
+
 # Read simple config file to dictionary
 def read_config(config_path='config'):
     config = {}
@@ -19,8 +29,9 @@ def read_config(config_path='config'):
             # strip whitespace in all entries
             if len(data) == 1:
                 data = data[0].strip()
+                data = path_check(data)
             else:
-                data = [item.strip() for item in data]
+                data = [path_check(item.strip()) for item in data]
 
             config[key] = data
     return config
