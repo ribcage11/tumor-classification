@@ -22,3 +22,5 @@ def fill_scan_df(labels_df, config):
     scans_df[["BraTS21ID", "seq", "image_id"]] = scan_info
 
     return scans_df
+
+
