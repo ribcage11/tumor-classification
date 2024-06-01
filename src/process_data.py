@@ -37,7 +37,11 @@ def to_xarray_2d(image, pid):
 def read_full_3d_scan(scans_df, pid):
     patient = dff.get_patient(scans_df, pid)
     patient = patient.to_numpy()  # convert to numpy to interate through rows
-    scan = xr.concat([x for x in process_images(patient)], dim='im_index')
+
+    # stack scans into 3d x-array
+    num_im = len(patient) # get number of images for coordinate system
+    coord = xr.DataArray(data=np.arange(0, num_im), dims='im_index')  # introduce coordinate system, im_index
+    scan = xr.concat([x for x in process_images(patient)], dim=coord)  # concat along new dimension
     return scan
 
 
