@@ -10,7 +10,7 @@ def filter_data(df, col, value):
 
 # get all data given patient
 def get_patient(scans_df, pid):
-    patient = scans_df[scans_df['BraTS21ID'] == pid]
+    patient = scans_df[scans_df['pid'] == pid]
     return patient
 
 

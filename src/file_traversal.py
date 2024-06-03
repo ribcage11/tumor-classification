@@ -40,7 +40,7 @@ def read_config(config_path='config'):
 # params: <location of data/>, <data subfolder (ex. raw or processed)>, <patient ID>, <list of sequences>
 def _get_sample(data_root, subfolder, brats21id, seq):
     im_path_arr = []  # All file paths in all sequences from the patient 
-    if type(seq) is str:
+    if type(seq) is str:  # type conversion in case of one sequence
         seq = [seq]
 
     for s in seq:

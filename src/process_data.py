@@ -61,7 +61,7 @@ def batch_processor(batch_size):
 
 
 # Batch contains: df of scan paths and info
-@batch_processor(batch_size=20)
+@batch_processor(batch_size=50)
 def process_images(batch):
     processed_batch = []
     for row in batch:
