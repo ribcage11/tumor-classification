@@ -23,6 +23,7 @@ def fill_scan_df(labels_df, config):
     scan_info = scans_df['file_path'].str.rsplit('/', expand=True, n=3).iloc[:, 1:]
     scans_df[['pid', 'seq', 'image_id']] = scan_info
     scans_df['image_id'] = scans_df['image_id'].str.extract(r'(\d+)')
+    scans_df['image_id'] = scans_df['image_id'].astype(dtype='int32')  # cast image index to int
 
     return scans_df
 

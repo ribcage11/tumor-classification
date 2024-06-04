@@ -18,8 +18,6 @@ def get_patient(scans_df, pid):
 def get_image_path(scans_df, pid, im_id):
     patient = get_patient(scans_df, pid)
     image = patient[patient['image_id'] == im_id]
-    return image
-
-
-
+    path = image.file_path.iloc[0] # get path as string
+    return path
 
